@@ -1,0 +1,28 @@
+<main class="body-main">
+  <%if user_signed_in? %>
+  <h3>Posts</h3>
+  <br>
+
+  <%= render "post/form" ,post: @post, actionname:'index'%>
+
+
+  <div>
+    <ul>
+      <%@Allpost.reverse.each do |post| %>
+      <li id="post<%=post.id%>" class="post-li">
+        <%=render "post/showpost" , p:post%>
+      <div class="post-div">
+        <%= link_to 'like',like_new_path(post)%>
+        <div id="div-like"><%=post.likes.length%></div>
+        <%= link_to "edit",edit_post_path(:id => post.id)%>
+        <%= link_to 'Delete',post_path(:id =>post.id), method: :delete%>
+      </div>
+      <div class="comments-div">
+      <%=render "post/formcomments" , p:post%>
+      </div>
+      </li>
+      <%end%>
+    </ul>
+  </div>
+  <%end%>
+</main>

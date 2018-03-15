@@ -1,0 +1,31 @@
+<li>
+	<p class="comment-content"><%= comment.content %></p>
+	<p class="comment-user">
+		<small>
+			By <%= comment.user.email %> at <%= comment.created_at.to_date %>
+		</small>
+	</p>
+	<div class="post-div">
+		<%= link_to "edit",edit_comment_path(:id => comment.id)%>
+		<%= link_to 'Delete',comment_path(:id =>comment.id), method: :delete%>
+	</div>
+</li>
+
+	 <%= form_for @comment,:url => {:controller => "comments", :action => "create"} do |c| %>
+		 <input type="hidden" name="comment[parent_type]" value="comment">
+		 <input type="hidden" name="comment[parent_id]" value="<%= comment.id %>">
+		 <%= c.label :content, "reply" %>
+		 <%= c.text_field :content %>
+		 <%= c.submit "submit" %>
+	 <%end%>
+
+
+	<ul>
+			  <% comment.comments.reverse.each do |fc| %>
+			 	<%= render 'comments/show', comment: fc %>
+				<div class="post-div">
+					<%= link_to "edit",edit_comment_path(:id => fc.id)%>
+					<%= link_to 'Delete',comment_path(:id =>fc.id), method: :delete%>
+				</div>
+		 	 	<% end %>
+	</ul>
