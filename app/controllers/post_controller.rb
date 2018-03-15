@@ -5,6 +5,7 @@ class PostController < ApplicationController
     @Allpost=Post.all
     @comment=Comment.new
     @like=Like.new
+    @user=User.all
     #@postlike=Post.find(params[:id])
     #@likecount=Like.where(post_id: @postlike).length
   end

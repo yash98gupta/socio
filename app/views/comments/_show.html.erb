@@ -6,3 +6,14 @@
 		</small>
 	</p>
 </li>
+
+<div style="display: inline-block;">
+		<%= form_for @like, :url => {:controller => "like", :action => "likenew"} do |l|%>
+					<input type="hidden" name="like[parent_type]" value="comment">
+					<input type="hidden" name="like[parent_id]" value="<%= comment.id %>">
+					<%= l.submit 'like' %>
+		<%end%>
+</div>
+
+
+<div id="div-like"><%=comment.likes.length%></div>

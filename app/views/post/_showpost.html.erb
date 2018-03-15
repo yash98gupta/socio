@@ -3,3 +3,11 @@
   By <%= p.user.email %>
   at <%= p.created_at.to_date %>
 </small>
+
+  <div style="display: inline-block;">
+			<%= form_for @like, :url => {:controller => "like", :action => "likenew"} do |l|%>
+	    			<input type="hidden" name="like[parent_type]" value="post">
+	    			<input type="hidden" name="like[parent_id]" value="<%= p.id %>">
+	    			<%= l.submit 'like' %>
+			<%end%>
+	</div>

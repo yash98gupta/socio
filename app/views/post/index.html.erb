@@ -5,24 +5,32 @@
 
   <%= render "post/form" ,post: @post, actionname:'index'%>
 
+<div id="page-look" style="display: inline-flex;width: 100vw;justify-content: space-between;">
 
-  <div>
+  <div id="left-look" style="display: inline-flex;width: 100vw;justify-content: space-between;background-color: grey;">
     <ul>
-      <%@Allpost.reverse.each do |post| %>
-      <li id="post<%=post.id%>" class="post-li">
-        <%=render "post/showpost" , p:post%>
-      <div class="post-div">
-        <%= link_to 'like',like_new_path(post)%>
-        <div id="div-like"><%=post.likes.length%></div>
-        <%= link_to "edit",edit_post_path(:id => post.id)%>
-        <%= link_to 'Delete',post_path(:id =>post.id), method: :delete%>
-      </div>
-      <div class="comments-div">
-      <%=render "post/formcomments" , p:post%>
-      </div>
-      </li>
-      <%end%>
-    </ul>
+      
+  </div>
+  <div id="center-bar" style="width: 205%;  height: 100%;">
+            <ul style=" list-style: none;margin: 0px;padding: 0px;">
+                <%@Allpost.reverse.each do |post| %>
+                  <li id="post<%=post.id%>" class="post-li">
+                    <%=render "post/showpost" , p:post%>
+                    <div class="post-div">
+                      <!-- <%= link_to 'like',like_new_path() %> -->
+                      <!-- <div id="div-like"><%=post.likes.length%></div> -->
+                      <div id="div-like"><%=post.likes.length%></div>
+                      <%= link_to "edit",edit_post_path(:id => post.id)%>
+                      <%= link_to 'Delete',post_path(:id =>post.id), method: :delete%>
+                    </div>
+                    <div class="comments-div">
+                    <%=render "post/formcomments" , p:post%>
+                    </div>
+                  </li>
+                <%end%>
+            </ul>
+    </div>
+    <div id="right-look" style="display: inline-flex;width: 100vw;justify-content: space-between;background-color: grey;"></div>
   </div>
   <%end%>
 </main>

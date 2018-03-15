@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
 
   def create
-		if (params[:comment][:parent_type] == 'Post')
+		if (params[:comment][:parent_type] == 'post')
 			@parent = Post.find(params[:comment][:parent_id])
 		else
 			@parent = Comment.find(params[:comment][:parent_id])
@@ -12,6 +12,7 @@ class CommentsController < ApplicationController
 				user_id: current_user.id,
 				parent: @parent
 			)
+      @like=Like.new
       redirect_to post_index_path
     end
 

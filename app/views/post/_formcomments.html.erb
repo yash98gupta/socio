@@ -1,6 +1,6 @@
 <h5>Comments</h5>
    <%= form_for @comment,:url => {:controller => "comments", :action => "create"} do |comment| %>
-     <input type="hidden" name="comment[parent_type]" value="Post">
+     <input type="hidden" name="comment[parent_type]" value="post">
      <input type="hidden" name="comment[parent_id]" value="<%= p.id %>">
      <%= comment.label :content, "New Comment" %>
      <%= comment.text_field :content %>
